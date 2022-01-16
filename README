@@ -1,0 +1,5 @@
+---
+# sh.sqrt
+-- Square Root (√) in pure POSIX sh
+---- various methods included; see
+----- https://en.wikipedia.org/wiki/Methods_of_computing_square_roots 

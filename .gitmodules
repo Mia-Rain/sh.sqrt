@@ -1,0 +1,4 @@
+[submodule "ran"]
+	path = ran
+	url = https://git.dicksdeathabove.xyz/Mia-admin/psh-prng
+	branch = master
