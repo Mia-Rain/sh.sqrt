@@ -1,0 +1,48 @@
+#!/bin/sh
+IFS=""
+[ "$RANP" ] && {
+  ran="$(${RANP})"
+} || [ -d $PWD/../ran ] && {
+  ran="$($PWD/../ran/ran)"
+} || {
+  printf 'Location of psh-prng unknown... 
+Please Set $RANP to its location...\n'
+  exit 1
+}
+gran() {
+  ran="$(${RANP:-$PWD/../ran/ran} $2)"
+  # $ran -eq $ran -- checks if number 
+  until [  "$ran" -gt 1 -a "$ran" -eq "$ran" -a "$ran" -lt "$1" ]; do
+    ran="$(${RANP:-$PWD/../ran/ran} $2)"
+    until [ "${ran%0}" = "$ran" ]; do
+      ran="${ran%0}" 
+    done
+    until [ "${#ran}" -le "${#1}" ]; do
+      ran="${ran#?}";
+      until [ "${ran#0}" = "${ran}" ]; do
+        ran="${ran#0}"
+      done
+    done
+  done
+  echo "$ran"
+}
+ran=$(gran "$1"); s="!"; while [ "$s" = "!" ]; do
+  [ "$ox" ] || ox="$ran"
+  [ "$ox" -a "$ox" -eq "$ran" ] && ran="$(gran $1)"
+  ox="$ran"
+  [ "$ran" -le 1 ] && {
+    ram="$(gran $1)"
+  } || {
+    [ "$((ran*ran))" -eq "$1" ] && {
+      s=":"
+    } || {
+      [ "$((ran*ran))" -gt "$1" ] && {
+        [ "$(($1/ran))" -eq 1 ] && : $((ran+=1))
+        ran=$((($1/ran)+$1 /2))
+      } || {
+        ran=$((ran*ran))
+      }
+    }
+  }
+done
+echo "$ran"

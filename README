@@ -3,3 +3,15 @@
 -- Square Root (√) in pure POSIX sh
 ---- various methods included; see
 ----- https://en.wikipedia.org/wiki/Methods_of_computing_square_roots 
+---
+# Babylonian Method
+-- The Babylonian method is the first to be implemented
+-- Since sh can only actively work with whole numbers on its own
+-- The method is actually quite accurate
+-- However (obv) a break down occurs when numbers without 
+---- whole Square Roots are inputed, however;
+---- the algorithm should/has (have) been adjusted to detect when it 
+---- enters and endless loop, and should produce the closest whole number
+-- This method requires a starting seed; POSIX sh however lacks $RANDOM
+-- thus psh-prng is used by this method; one will have to clone with
+---- `--recursive` to pull in the submodule
