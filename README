@@ -29,3 +29,10 @@
 ---- the square root of S
 -- The square root of 4 has to be hard coded since 4/3 produces
 ---- 1.333[...] which is < the square root (2)
+---
+# Comparison (Babylonian and Miterate)
+-- Over 12 iterations; calculating the square root of 144
+---- Babylonian Method: 0.1625 seconds (real time)
+---- Mia Method: 0.0075 seconds (real time)
+-- However it should be noted that that Babylonian Method
+---- (when not restricted by sh) can calculate decimal points

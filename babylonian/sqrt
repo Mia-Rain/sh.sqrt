@@ -26,23 +26,33 @@ gran() {
   done
   echo "$ran"
 }
-ran=$(gran "$1"); s="!"; while [ "$s" = "!" ]; do
+ran=$(gran "$1"); s="!"; n=0; while [ "$s" = "!" ]; do
+  #echo "$ran $(($1/3))"
   [ "$ox" ] || ox="$ran"
-  [ "$ox" -a "$ox" -eq "$ran" ] && ran="$(gran $1)"
+  [ "$ox" -a "$ox" -eq "$ran" ] && {
+    ran="$(gran $1)"
+  }
+  #echo "$ox $ran $1 $(($1/ox)) $(($1/ran)) $((ran*ran)) $((ox*ox)) -- $n"
+  [ "$((ran*ran))" -eq "$((ox*ox))" ] && {
+    : $((n+=1))
+    #echo "-- $n "
+  }
   ox="$ran"
   [ "$ran" -le 1 ] && {
-    ram="$(gran $1)"
+    ran="$(gran $1)"
   } || {
+    #echo "-- $ran $(($1/3))"
     [ "$((ran*ran))" -eq "$1" ] && {
       s=":"
     } || {
       [ "$((ran*ran))" -gt "$1" ] && {
         [ "$(($1/ran))" -eq 1 ] && : $((ran+=1))
-        ran=$((($1/ran)+$1 /2))
+        ran=$((($1/ran +ran)/2))
+        #echo "? $ran"
       } || {
         ran=$((ran*ran))
       }
     }
   }
 done
-echo "$ran"
+echo "$ran | $n"
