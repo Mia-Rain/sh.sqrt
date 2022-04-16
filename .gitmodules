@@ -2,3 +2,9 @@
 	path = ran
 	url = https://git.dicksdeathabove.xyz/Mia-admin/psh-prng
 	branch = master
+[submodule "https://dicksdeathabove.xyz/~mia/psh-prng"]
+	url = ./ran
+[submodule "math"]
+	path = math
+	url = https://dicksdeathabove.xyz/~mia/psh-fractional
+	branch = master
