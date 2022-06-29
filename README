@@ -28,6 +28,15 @@
 -- The square root of 4 has to be hard coded since 4/3 produces
 ---- 1.333[...] which is < the square root (2)
 ---
+# Mia Method with Decimals (miterate.dec)
+-- works with all whole numbers >4
+---- square roots of decimals are unlikely to work and are untested
+-- can calculate square roots to the 6th decimal place
+---- 8 decimal places is possible however you may run into overflow issues
+-- It works by usig the original Miterate method 
+-- but with a new system to increment decimals
+---- It depends on psh-fc and psh-fractional; clone with `--recursive`
+---
 # Comparison (Babylonian and Miterate)
 -- Over 12 iterations; calculating the square root of 144
 ---- Babylonian Method: 0.1625 seconds (real time)

@@ -8,3 +8,8 @@
 	path = math
 	url = https://dicksdeathabove.xyz/~mia/psh-fractional
 	branch = master
+[submodule "fc"]
+	path = fc
+	url = https://dicksdeathabove.xyz/~mia/psh-fractional
+[submodule "./fc"]
+	url = https://dicksdeathabove.xyz/~mia/psh-fc

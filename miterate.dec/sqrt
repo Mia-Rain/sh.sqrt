@@ -1,0 +1,45 @@
+#!/bin/sh
+pshfc_DIR="${user_pshfc_DIR:-../fc}"; pshfr_DIR="${user_pshfr_DIR:-../math}"; num="$1"
+s() {
+  n=$1; i=1; while [ "$n" -le $2 ]; do
+    echo "$n"; : $((n+=i))
+  done
+} # seq
+[ "$1" -eq 4 ] && {
+  echo '2'; exit 0
+}
+dec() {
+  until ${pshfc_DIR}/com $(${pshfr_DIR}/multiplication/mul ${pn}.${dn} ${pn}.${dn}) -fl $1; do
+    : $((dn+=1))
+  done
+  if [ "${#dn}" -lt 6 ]; then
+    ${pshfc_DIR}/com $(${pshfr_DIR}/multiplication/mul ${pn}.${dn} ${pn}.${dn}) -gt $1 && {
+      : $((dn-=1))
+      inc=0
+    }
+    echo "$dn ${inc:-1} $pn"
+  else
+    echo "$dn 1 $pn"
+  fi
+}
+for i in $(s 1 $((($1/3) +1))); do
+  [ "$((i*i))" -eq "$1" ] && {
+    echo "$i"; exit 0
+  } || {
+    if [ "$pn" ]; then
+      [ $((pn*pn)) -lt "$1" -a $((i*i)) -gt "$1" ] && { 
+        # number is decimal
+        dn=1
+        dec=$(dec "$1"); num=$1; IFS=" "; set -- ${dec}; pn="$3"
+        # $1=dn $2=inc $3=pn $num=$1
+        until [ "$2" -eq 1 ]; do
+          dn="${dn}1"
+          dec=$(dec "$num"); IFS=" "; set -- ${dec}
+          dn="$1"; pn="$3"
+        done
+        echo "~ ${pn}.${dn}"; exit 0
+      }
+    fi
+  }
+  pn="$i"
+done
