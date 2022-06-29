@@ -1,15 +1,12 @@
 [submodule "ran"]
 	path = ran
-	url = https://git.dicksdeathabove.xyz/Mia-admin/psh-prng
-	branch = master
-[submodule "https://dicksdeathabove.xyz/~mia/psh-prng"]
-	url = ./ran
+	url = ssh://g.transcendent.ink/psh-prng
+	branch = switch
 [submodule "math"]
 	path = math
-	url = https://dicksdeathabove.xyz/~mia/psh-fractional
-	branch = master
+	url = ssh://g.transcendent.ink/psh-fractional
+	branch = switch
 [submodule "fc"]
-	path = fc
-	url = https://dicksdeathabove.xyz/~mia/psh-fractional
-[submodule "./fc"]
-	url = https://dicksdeathabove.xyz/~mia/psh-fc
+        path = fc
+	url = ssh://g.transcendent.ink/psh-fc
+        branch = switch
